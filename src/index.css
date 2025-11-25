@@ -1,0 +1,122 @@
+:root {
+  /* Dark Theme Palette */
+  --color-bg: #0f172a;
+  /* Dark Slate */
+  --color-surface: #1e293b;
+  /* Slightly lighter slate */
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+
+  /* Neon Accents */
+  --color-green-flag: #4ade80;
+  /* Neon Green */
+  --color-green-glow: rgba(74, 222, 128, 0.2);
+  --color-red-flag: #f87171;
+  /* Neon Red */
+  --color-red-glow: rgba(248, 113, 113, 0.2);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Radius */
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Utilities */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.input-area {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.input-area:focus {
+  outline: none;
+  border-color: #a855f7;
+}
+
+.flag-card {
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.flag-green {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid var(--color-green-flag);
+  box-shadow: 0 0 15px var(--color-green-glow);
+}
+
+.flag-red {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid var(--color-red-flag);
+  box-shadow: 0 0 15px var(--color-red-glow);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #f87171, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
