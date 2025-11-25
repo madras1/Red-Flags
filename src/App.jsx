@@ -31,56 +31,14 @@ function App() {
     }
   }
 
-  const checkConnection = async () => {
-    if (!apiKey) return alert("Enter an API key first")
-    try {
-      // Direct REST call to list models to see exactly what is available
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`)
-      const data = await response.json()
 
-      if (data.error) {
-        throw new Error(data.error.message)
-      }
-
-      const availableModels = (data.models || [])
-        .map(m => m.name.replace('models/', ''))
-        .filter(name => name.includes('gemini'))
-        .join(',\n')
-
-      alert(`API Connection OK!\n\nAvailable Models:\n${availableModels}\n\nWe will use the first one found.`)
-      console.log("Available models:", data.models)
-    } catch (e) {
-      alert(`Connection Failed:\n${e.message}\n\nCheck your API Key and Internet Connection.`)
-    }
-  }
 
   return (
     <div className="container">
       <header style={{ marginBottom: '2rem', textAlign: 'center', position: 'relative' }}>
         <h1 className="title">The Red Flag App</h1>
         <p className="text-muted">AI-powered reality check for your life decisions.</p>
-        {apiKey && (
-          <button
-            onClick={() => {
-              localStorage.removeItem('gemini_api_key')
-              setApiKey('')
-              setFlags(null)
-            }}
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--color-text-muted)',
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              textDecoration: 'underline'
-            }}
-          >
-            Change API Key
-          </button>
-        )}
+
       </header>
 
       <main>
@@ -90,12 +48,6 @@ function App() {
           <>
             <DecisionInput onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-              <button
-                onClick={checkConnection}
-                style={{ background: 'none', border: 'none', color: '#666', fontSize: '0.8rem', cursor: 'pointer', textDecoration: 'underline' }}
-              >
-                Debug Connection
-              </button>
             </div>
           </>
         ) : (
