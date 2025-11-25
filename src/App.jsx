@@ -7,10 +7,13 @@ import { analyzeScenario } from './utils/analyzer'
 function App() {
   const [flags, setFlags] = useState(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || '')
+  // Prioritize environment variable, then local storage
+  const [apiKey, setApiKey] = useState(() => {
+    return import.meta.env.VITE_GEMINI_API_KEY || localStorage.getItem('gemini_api_key') || ''
+  })
 
   useEffect(() => {
-    if (apiKey) {
+    if (apiKey && !import.meta.env.VITE_GEMINI_API_KEY) {
       localStorage.setItem('gemini_api_key', apiKey)
     }
   }, [apiKey])
